@@ -31,24 +31,25 @@
 # ==============================================================================
 
 cmake_minimum_required(VERSION 3.15)
-project(MyJucePlugin VERSION 0.1 LANGUAGES CXX)
+project(SampleJucePlugin VERSION 0.1 LANGUAGES CXX)
 
-# point CMake at the JUCE root
+# Point to your JUCE clone
 set(JUCE_DIR "$ENV{HOME}/JUCE")
 include(${JUCE_DIR}/extras/Build/JUCE/CMakeLists.txt)
 
-# register your plug-in
-juce_add_plugin(MyJucePlugin
-  COMPANY_NAME    YourName
-  PLUGIN_MANUFACTURER_CODE Your
-  PLUGIN_CODE     Plg1
-  FORMATS         VST3  # add AU if on macOS
+# Define plugin target
+juce_add_plugin(SampleJucePlugin
+    COMPANY_NAME Sample
+    PLUGIN_MANUFACTURER_CODE Snpl
+    PLUGIN_CODE Sppl
+    FORMATS         VST3
 )
 
-target_sources(MyJucePlugin
-  PRIVATE
+target_sources(SampleJucePlugin PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginEditor.cpp
 )
-juce_generate_juce_header(MyJucePlugin)
+juce_generate_juce_header(SampleJucePlugin)
+target_compile_features(SampleJucePlugin PRIVATE cxx_std_14)
+
 
